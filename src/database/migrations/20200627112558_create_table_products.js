@@ -1,0 +1,15 @@
+exports.up = knex => knex.schema.createTable('products', table => {
+    table.increments('id').primary()
+    table.string('name').unique().notNullable()
+    table.string('description')
+    table.float('price').notNullable()
+    table.boolean('is_active').notNullable().defaultTo(false)
+    table.integer('owner_id').unsigned().notNullable()
+    table.foreign('owner_id').references('companies.id')
+    table.integer('category').unsigned().notNullable().defaultTo(1)
+    table.foreign('category').references('categories.id')
+    table.timestamp('created_at').defaultTo(knex.fn.now())
+    table.timestamp('updated_at').defaultTo(knex.fn.now())
+  })
+
+exports.down = knex => knex.schema.dropTable('products')
