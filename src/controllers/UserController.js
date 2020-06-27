@@ -27,9 +27,10 @@ module.exports = {
         try {
             const { name } = req.body
             const { id } = req.params
+            const updated_at = knex.fn.now()
 
             await knex('users')
-                .update({ name })
+                .update({ name, updated_at })
                 .where({ id })
             return res.send()
         } catch (error) {

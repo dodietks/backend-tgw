@@ -41,6 +41,7 @@ module.exports = {
                 phone,
                 owner_id
             } = req.body
+            const updated_at = knex.fn.now()
             const { id } = req.params
 
             await knex('companies')
@@ -48,7 +49,8 @@ module.exports = {
                     trade_name,
                     company_name,
                     phone,
-                    owner_id
+                    owner_id,
+                    updated_at
                 })
                 .where({ id })
             return res.send()
