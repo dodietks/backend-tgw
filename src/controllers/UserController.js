@@ -3,9 +3,14 @@ const { update } = require("../database")
 
 module.exports = {
     async index(req, res) {
-        const results = await knex('users')
+        try {
+            const results = await knex('users')
 
-        return res.json(results)
+            return res.json(results)
+        } catch (error) {
+            next(error)
+        }
+
     },
     async create(req, res, next) {
         try {
