@@ -5,7 +5,8 @@ const bodyParser = require('body-parser');
 
 const rotaProdutos = require('./routes/produtos');
 const rotaPedidos = require('./routes/pedidos');
-const rotaUsers = require('./routes/users');
+const routeUsers = require('./routes/users');
+const routeCategories = require('./routes/categories');
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false}));
@@ -28,7 +29,8 @@ app.use((req, res, next) => {
 
 app.use('/produtos', rotaProdutos);
 app.use('/pedidos', rotaPedidos);
-app.use('/users', rotaUsers);
+app.use('/users', routeUsers);
+app.use('/categories', routeCategories);
 
 app.use((req, res, next) => {
   const err = new Error('Não encontrado');
