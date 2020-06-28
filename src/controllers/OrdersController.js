@@ -17,10 +17,9 @@ module.exports = {
             const {
                 quantity,
                 note,
-                product_id,
-                is_payd_out
+                product_id                
             } = req.body
-
+            const is_payd_out = false
             await knex('orders')
                 .insert({
                     quantity,
